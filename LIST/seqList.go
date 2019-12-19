@@ -1,4 +1,4 @@
-package seqList
+package LIST
 
 import (
 	"errors"
@@ -6,14 +6,14 @@ import (
 	"reflect"
 )
 
-type seqList struct {
+type SeqList struct {
 	element       []interface{}
 	currentLength int
 	maxLength     int
 }
 
-func CreateSeqList(values []interface{}) *seqList {
-	sl := seqList{
+func NewSeqList(values []interface{}) *SeqList {
+	sl := SeqList{
 		element:       make([]interface{}, len(values)),
 		maxLength:     len(values),
 		currentLength: len(values),
@@ -26,19 +26,19 @@ func CreateSeqList(values []interface{}) *seqList {
 	return &sl
 }
 
-func (sl *seqList) IsEmpty() bool {
+func (sl *SeqList) IsEmpty() bool {
 	return sl.currentLength == 0
 }
 
-func (sl *seqList) Size() int {
+func (sl *SeqList) Size() int {
 	return sl.currentLength
 }
 
-func (sl *seqList) MaxSize() int {
+func (sl *SeqList) MaxSize() int {
 	return sl.maxLength
 }
 
-func (sl *seqList) String() (str string) {
+func (sl *SeqList) String() (str string) {
 	str = fmt.Sprintf("List (%v) :{",reflect.TypeOf(sl).Elem().Name())
 	for i:=0;i<sl.currentLength;i++ {
 		if i == sl.currentLength-1 {
@@ -52,14 +52,14 @@ func (sl *seqList) String() (str string) {
 }
 
 
-func (sl *seqList) Get(i int) interface{} {
+func (sl *SeqList) Get(i int) interface{} {
 	if i > sl.currentLength || i < 0 {
 		return nil
 	}
 	return sl.element[i]
 }
 
-func (sl *seqList) Set(i int, x interface{}) {
+func (sl *SeqList) Set(i int, x interface{}) {
 	if x == nil {
 		panic("params x can not be nil")
 	}
@@ -71,7 +71,7 @@ func (sl *seqList) Set(i int, x interface{}) {
 	sl.element[i] = x
 }
 
-func (sl *seqList) Insert(i int, x interface{}) int {
+func (sl *SeqList) Insert(i int, x interface{}) int {
 	if x == nil {
 		panic("params x can not be nil")
 	}
@@ -105,11 +105,11 @@ func (sl *seqList) Insert(i int, x interface{}) int {
 	return i
 }
 
-func (sl *seqList) InsertDef(x interface{}) {
+func (sl *SeqList) InsertDef(x interface{}) {
 	sl.Insert(sl.currentLength,x)
 }
 
-func (sl *seqList) Del(i int) interface{} {
+func (sl *SeqList) Del(i int) interface{} {
 	if i > sl.currentLength || i < 0 {
 		return nil
 	}

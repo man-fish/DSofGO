@@ -1,4 +1,4 @@
-package cirDoubleList
+package LIST
 
 import (
 	"fmt"
@@ -6,15 +6,15 @@ import (
 )
 
 type cirDoubleList struct {
-	head *doubleNode
+	head *DoubleNode
 }
 
 func NewEmptyCirDoubleList() *cirDoubleList {
 	cls := &cirDoubleList{
-		new(doubleNode),
+		new(DoubleNode),
 	}
-	cls.head.next = cls.head
-	cls.head.prev = cls.head
+	cls.head.Next = cls.head
+	cls.head.Prev = cls.head
 	return cls
 }
 
@@ -22,20 +22,20 @@ func NewCirDoubleList(values []interface{}) *cirDoubleList {
 	cls := NewEmptyCirDoubleList()
 	p := cls.head
 	for i := 0; i < len(values); i++ {
-		p.next = &doubleNode{values[i],p,nil}
-		p = p.next
+		p.Next = &DoubleNode{values[i],p,nil}
+		p = p.Next
 	}
-	p.next = cls.head
-	cls.head.prev = p
+	p.Next = cls.head
+	cls.head.Prev = p
 	return cls
 }
 
 func (cls *cirDoubleList) String() (str string) {
 	str = fmt.Sprintf("List (%v) :{",reflect.TypeOf(cls).Elem().Name())
 	rear := cls.head
-	for rear.next != cls.head {
-		rear = rear.next
-		if rear.next == cls.head  {
+	for rear.Next != cls.head {
+		rear = rear.Next
+		if rear.Next == cls.head  {
 			str += rear.String()
 		}else{
 			str += rear.String()
@@ -47,38 +47,38 @@ func (cls *cirDoubleList) String() (str string) {
 }
 
 func (cls *cirDoubleList) IsEmpty() bool {
-	return cls.head.next == cls.head
+	return cls.head.Next == cls.head
 }
 
-func (cls *cirDoubleList) Insert(i int, data interface{}) *doubleNode {
+func (cls *cirDoubleList) Insert(i int, data interface{}) *DoubleNode {
 	if data == nil {
 		panic("params data can not be nil")
 	}
 	p := cls.head
-	for j := 0;j <= i&&p.next != cls.head ;j++ {
-		p = p.next
+	for j := 0;j <= i&&p.Next != cls.head ;j++ {
+		p = p.Next
 	}
-	ins := &doubleNode{
-		data:data,
-		next:p,
-		prev:p.prev,
+	ins := &DoubleNode{
+		Data:data,
+		Next:p,
+		Prev:p.Prev,
 	}
-	p.prev.next = ins
-	p.prev = ins
+	p.Prev.Next = ins
+	p.Prev = ins
 	return ins
 }
 
-func (cls *cirDoubleList) Remove(i int) *doubleNode {
-	p := cls.head.next
+func (cls *cirDoubleList) Remove(i int) *DoubleNode {
+	p := cls.head.Next
 	for j := 0;j < i;j++ {
 		if p == nil {
 			return nil
 		}
-		p = p.next
+		p = p.Next
 	}
 	defer func() {
-		p.prev.next = p.next
-		p.next.prev = p.prev
+		p.Prev.Next = p.Next
+		p.Next.Prev = p.Prev
 	}()
 	return p
 }

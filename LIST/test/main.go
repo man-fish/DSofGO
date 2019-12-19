@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"go_DataStruct/LIST/cirDoubleList"
-	"go_DataStruct/LIST/seqList"
-	"go_DataStruct/LIST/singleList"
+	"go_DataStruct/LIST"
 )
 
 func testSeqList(){
 	fmt.Println("=================测试线性表=================")
 	testArr := []interface{}{"1",2,"coconut",nil}
-	list := seqList.CreateSeqList(testArr)
+	list := LIST.NewSeqList(testArr)
 	fmt.Println(list.String())
 	fmt.Println(list.Size())
 	fmt.Println(list.Del(3))
@@ -35,7 +33,7 @@ func testSeqList(){
 func testSingleList() {
 	fmt.Println("=================测试单链表=================")
 	testArr := []interface{}{"1",2,"coconut"}
-	list := singleList.NewSingleList(testArr)
+	list := LIST.NewSingleList(testArr)
 	fmt.Println(list.String())
 	fmt.Println(list.Insert(0,888))
 	fmt.Println(list.String())
@@ -46,6 +44,7 @@ func testSingleList() {
 	fmt.Println(list.String())
 	n := list.Search("coconut")
 	fmt.Println(n)
+	fmt.Println(list.String())
 	list.Reverse()
 	fmt.Println(list.String())
 }
@@ -53,7 +52,7 @@ func testSingleList() {
 func testDoubleSingleList() {
 	fmt.Println("=================测试双链表=================")
 	testArr := []interface{}{"1",2,"coconut"}
-	list := cirDoubleList.NewCirDoubleList(testArr)
+	list := LIST.NewCirDoubleList(testArr)
 	fmt.Println(list.IsEmpty())
 	fmt.Println(list.String())
 	fmt.Println(list.Insert(1,"goDS").String())
