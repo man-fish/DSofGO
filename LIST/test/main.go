@@ -45,8 +45,10 @@ func testSingleList() {
 	n := list.Search("coconut")
 	fmt.Println(n)
 	fmt.Println(list.String())
-	list.Reverse()
-	fmt.Println(list.String())
+	//list.Reverse()
+	list.CurReverse(list.Head)
+	fmt.Println(list)
+	//fmt.Println(list.String())
 }
 
 func testDoubleSingleList() {
