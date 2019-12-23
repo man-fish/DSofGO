@@ -1,7 +1,7 @@
 package TREE
 
 import (
-	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -29,7 +29,7 @@ func NewHaffTree(weights []int) *HaffeeTree {
 	}
 	//初始化所有子叶结点
 	for j := len(weights); j < 2*len(weights)-1; j++ {
-		min1 := 1000
+		min1 := math.MaxInt8
 		min2 := min1
 		x1 := -1
 		x2 := -1
@@ -64,11 +64,7 @@ func (ht *HaffeeTree) GetCode(i int) string {
 		return ht.GetCode(parent) + strconv.Itoa(1)
 	}
 }
-//if ht.triELes[parent].Left == i {
-//	return 0
-//}else {
-//	return 1
-//}
+
 func (ht *HaffeeTree) String() string {
 	str := ""
 	for i := 0; i < len(ht.charset); i++ {
@@ -88,15 +84,14 @@ func (ht *HaffeeTree) Encode(text string) string {
 func (ht *HaffeeTree) Decode(compressed string) string {
 	text := ""
 	p := len(ht.triELes)-1
-	fmt.Println(p)
-	for idx, item := range compressed {
+	for _, item := range compressed {
 		if item == '0' {
-			p = ht.triELes[idx].Left
+			p = ht.triELes[p].Left
 		}else{
-			p = ht.triELes[idx].Right
+			p = ht.triELes[p].Right
 		}
-		if ht.triELes[idx].IsLeaf() {
-			text += string([]rune(ht.charset)[idx])
+		if ht.triELes[p].IsLeaf() {
+			text += string([]rune(ht.charset)[p])
 			p = len(ht.triELes)-1
 		}
 	}
