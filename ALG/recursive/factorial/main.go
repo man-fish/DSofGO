@@ -1,4 +1,4 @@
-package demo2
+package factorial
 
 import "fmt"
 

@@ -132,3 +132,24 @@ func (sls *SingleList) Reverse() {
 	}
 	sls.Head.Next = Head
 }
+
+/**
+单链表反转递归算法：
+	首先我们要明确有两个以上元素的单链表才有反转的意义。
+	头节点在这里并不参与反转，实际上的反转起始点时头节点之后的两个节点。
+*/
+
+func (sls *SingleList) CurReverse(node *Node) *Node {
+	if node.Next == nil {
+		sls.Head.Next = node
+		return node
+	}
+	c := sls.CurReverse(node.Next)
+	fmt.Println(c.Data)
+	if node == sls.Head {
+		c.Next = nil
+	}else{
+		c.Next = node
+	}
+	return node
+}

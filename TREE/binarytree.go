@@ -4,16 +4,42 @@ import (
 	"fmt"
 	"go_DataStruct/QUEUE"
 	"go_DataStruct/STACK"
+	"math"
 )
 
 type BinaryTree struct{
 	Root	*BinaryNode
 	Level	int
-	LeafNum	int
+	i 		int
 }
 
-func NewBinaryTree() *BinaryTree {
+func NewBinaryTree(preList []interface{}) *BinaryTree {
+	bt := NewEmptyBinaryTree()
+	bt.Root = bt.create(preList)
+	bt.i = 0
+	for _,item := range preList {
+		if item != nil {
+			bt.i++
+		}
+	}
+	bt.Level = int(math.Floor(math.Log(float64(bt.i))+float64(1)))
+	bt.i = 0
+	return bt
+}
 
+
+func (bt *BinaryTree)create(values []interface{}) *BinaryNode {
+	p := new(BinaryNode)
+	if bt.i < len(values) {
+		ele := values[bt.i]
+		bt.i ++
+		if ele != nil {
+			p = &BinaryNode{Data:ele}
+			p.Left = bt.create(values)
+			p.Right = bt.create(values)
+		}
+	}
+	return p
 }
 
 func NewEmptyBinaryTree() *BinaryTree {
