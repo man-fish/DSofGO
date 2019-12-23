@@ -13,6 +13,10 @@ type BinaryTree struct{
 	i 		int
 }
 
+func NewEmptyBinaryTree() *BinaryTree {
+	return &BinaryTree{nil,0,0}
+}
+
 func NewBinaryTree(preList []interface{}) *BinaryTree {
 	bt := NewEmptyBinaryTree()
 	bt.Root = bt.create(preList)
@@ -40,10 +44,6 @@ func (bt *BinaryTree)create(values []interface{}) *BinaryNode {
 		}
 	}
 	return p
-}
-
-func NewEmptyBinaryTree() *BinaryTree {
-	return &BinaryTree{nil,0,0}
 }
 
 func (bt *BinaryTree) IsEmpty() bool {

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go_DataStruct/TREE"
+)
 
 //func reverseString(s []byte) {
 //	s[0],s[len(s)-1] = s[len(s)-1],s[0]
@@ -40,5 +43,11 @@ func reverseStringvol2(s []byte)  {
 
 
 func main() {
-	reverseString([]byte{'H','a','n','n','a','h'})
+	//fmt.Println(string(rune('A')+2))
+	//reverseString([]byte{'H','a','n','n','a','h'})
+
+	haff := TREE.NewHaffTree([]int{7,5,1,2})
+	fmt.Println(haff.GetCode(0))
+	fmt.Println(haff)
+	fmt.Println(haff.Decode(haff.Encode("ACA")))
 }
