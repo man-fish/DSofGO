@@ -12,6 +12,15 @@ type SeqList struct {
 	maxLength     int
 }
 
+func NewEmptySeqList(length int) *SeqList {
+	return &SeqList{
+		element:       make([]interface{}, length),
+		maxLength:     length,
+		currentLength: 0,
+	}
+}
+
+
 func NewSeqList(values []interface{}) *SeqList {
 	sl := SeqList{
 		element:       make([]interface{}, len(values)),

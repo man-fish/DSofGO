@@ -3,6 +3,7 @@ package LIST
 import (
 	"errors"
 	"fmt"
+	"go_DataStruct/util"
 	"reflect"
 )
 
@@ -31,18 +32,18 @@ func (sls *SingleList) IsEmpty() bool {
 }
 
 func (sls *SingleList) String() (str string) {
-	str = fmt.Sprintf(" (%v) :{",reflect.TypeOf(sls).Elem().Name())
+	str = fmt.Sprintf(" (%v) :",reflect.TypeOf(sls).Elem().Name())
 	rear := sls.Head.Next
 	for rear != nil {
 		if rear.Next == nil  {
 			str += rear.String()
 		}else{
 			str += rear.String()
-			str += ","
+			str += "—>"
 		}
 		rear = rear.Next
 	}
-	str += fmt.Sprint("}")
+	str += fmt.Sprint("")
 	return
 }
 
@@ -67,7 +68,6 @@ func (sls *SingleList) Set(i int, data interface{}) {
 	}
 }
 
-
 //插入和删除操作不同于设置和获取每次操作的都是要插入位置的前一个元素。
 func (sls *SingleList) Insert(i int, data interface{}) *Node {
 	if data == nil {
@@ -78,6 +78,32 @@ func (sls *SingleList) Insert(i int, data interface{}) *Node {
 		p = p.Next
 	}
 	p.Next = &Node{data,p.Next}
+	return p.Next
+}
+
+func (sls *SingleList) InsertDifferent(data interface{})  {
+	if data == nil {
+		panic(errors.New("params data can not be nil"))
+	}
+	p := sls.Head
+	for p.Next != nil {
+		p = p.Next
+		if p.Data == data {
+			return
+		}
+	}
+	p.Next = &Node{data,p.Next}
+}
+
+func (sls *SingleList) InsertAtLast(data interface{}) *Node {
+	if data == nil {
+		panic(errors.New("params data can not be nil"))
+	}
+	p := sls.Head
+	for p.Next != nil {
+		p = p.Next
+	}
+	p.Next = &Node{data,nil}
 	return p.Next
 }
 
@@ -92,10 +118,26 @@ func (sls *SingleList) Delete(i int) *Node {
 	return p.Next
 }
 
-func (sls *SingleList) Search(x interface{}) *Node {
+func (sls *SingleList) Remove (x util.Comparable) *Node {
+	p := sls.Head
+	for p.Next != nil {
+		if x.IsEqual(x,p.Next.Data) {
+			temp := p.Next
+			p.Next = p.Next.Next
+			return temp
+		}
+	}
+	return nil
+}
+
+func (sls *SingleList) Search(x util.Comparable) *Node {
 	p := sls.Head.Next
 	for p != nil {
-		if p.Data == x {
+		d := p.Data
+		if reflect.TypeOf(d).Kind() == reflect.Ptr {
+			d = &(p.Data)
+		}
+		if x.IsEqual(x,d) {
 			return p
 		}
 		p = p.Next
