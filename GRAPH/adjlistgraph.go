@@ -1,6 +1,7 @@
 package GRAPH
 
 import (
+	"fmt"
 	"go_DataStruct/LIST"
 	"go_DataStruct/MATRIX"
 )
@@ -55,7 +56,9 @@ func (alg *AdjListGraph) RemoveVertex(i int) {
 	n := alg.VertexCount()
 	if i >= 0 && i < n {
 		link := alg.matrix.RowList.Get(i)
-		for p := link.(LIST.SingleList).Head.Next; p != nil; p = p.Next {
+		ptr := link.(*LIST.SingleList)
+		rp := *ptr
+		for p := rp.Head.Next; p != nil; p = p.Next {
 			alg.RemoveEdge(p.Data.(MATRIX.Triple).ToSymmetry().Col,p.Data.(MATRIX.Triple).ToSymmetry().Row)
 		}
 		n--
@@ -63,12 +66,19 @@ func (alg *AdjListGraph) RemoveVertex(i int) {
 		alg.matrix.SetRowCol(n,n)
 		for j := 0;j < n;j++ {
 			list := alg.matrix.RowList.Get(i)
-			for p := list.(LIST.SingleList).Head.Next; p != nil; p = p.Next {
-				if p.Data.(MATRIX.Triple).Row > i {
-					p.Data.(MATRIX.Triple).Row--
-				}
-				if p.Data.(MATRIX.Triple).Col > i {
-					p.Data.(MATRIX.Triple).Col--
+			ptr2,ok := list.(*LIST.SingleList)
+			if ok {
+				rp2 := *ptr2
+				for p := rp2.Head.Next; p != nil; p = p.Next {
+					tp := p.Data.(MATRIX.Triple)
+					tpptr := &tp
+					if tp.Row > i {
+						tpptr.SubRow()
+						/* 血的教训，一定要传递指针 */
+					}
+					if tp.Col > i {
+						tpptr.SubCol()
+					}
 				}
 			}
 		}
@@ -81,3 +91,13 @@ func (alg *AdjListGraph) RemoveVertex(i int) {
 func (alg *AdjListGraph) VertexCount() int {
 	return alg.vertexs.Size()
 }
+
+func (alg *AdjListGraph) String() string {
+	str := ""
+	str += alg.vertexs.String()+"\nadjMatrix:\n"
+	for y := 0; y < alg.matrix.RowList.Size(); y++ {
+		str += fmt.Sprint(alg.matrix.RowList.Get(y))+"\n"
+	}
+	return str
+}
+

@@ -106,12 +106,16 @@ func (g *MatrixGraph) RemoveVertex(i int) {
 func (g *MatrixGraph) VertexCount() int {
 	return g.vertexs.Size()
 }
+
+func (g *MatrixGraph) GetVertex(i int) interface{} {
+	return g.vertexs.Get(i)
+}
 /**
  * @param i	行数
  * @param j	列数
  * @return	比如我们有（0，1，2）（0，4，6），传入（0，1）返回 4，传入（0，-1）返回 1。
  */
-func (g *MatrixGraph) Mext(i,j int) int {
+func (g *MatrixGraph) Next(i,j int) int {
 	n := g.VertexCount()
 	if n > i && n > j && i >= 0 && j >= -1 && i != j {
 		for k:=j+1; k<n ;k++ {

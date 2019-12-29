@@ -24,6 +24,14 @@ func (tp Triple) IsEqual(a,b interface{}) bool {
 	return false
 }
 
+func (tp *Triple) SubRow () {
+	tp.Row = tp.Row-1
+}
+
+func (tp *Triple) SubCol () {
+	tp.Col = tp.Col-1
+}
+
 func (tp Triple) CompareTo(a,b interface{}) int {
 	if a.(Triple).Row == b.(Triple).Row && a.(Triple).Col == b.(Triple).Col {
 		if a.(Triple).Data > b.(Triple).Data {
