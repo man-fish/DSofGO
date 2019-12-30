@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+/*明天做背包问题的递归方法，切木棒还有这个https://juejin.im/post/5d556b7ef265da03aa2568d5#heading-6，解决游历问题https://blog.csdn.net/wqk1014/article/details/8283325。*/
+
 const kind = 6
 const weight = 21
 

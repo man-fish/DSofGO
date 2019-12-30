@@ -50,5 +50,25 @@ func coinMemorizeCharge(coins []int, memory []int, account int) int {
 	}
 }
 
+func coinDynamiccharge(coins []int, account int) int {
+	dp := make([]int, account+1)
+	for  j := 1; j < len(dp); j++  {
+		dp[j] = -1
+	}
+
+	for i := 1; i <= account; i++ {
+		for _,coin := range coins {
+			if coin <= i {
+				dp[i] = int(math.Min(float64(dp[i]),float64(dp[i-coin]+1)))
+			}
+		}
+	}
+	if dp[account] == -1 {
+		return -1
+	}else{
+		return dp[account]
+	}
+}
+
 func main() {
 }
