@@ -187,7 +187,6 @@ func (sls *SingleList) CurReverse(node *Node) *Node {
 		return node
 	}
 	c := sls.CurReverse(node.Next)
-	fmt.Println(c.Data)
 	if node == sls.Head {
 		c.Next = nil
 	}else{
