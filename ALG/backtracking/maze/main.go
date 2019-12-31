@@ -23,7 +23,6 @@ func dailMaze(maze *mymap, i int, j int) bool {
 	if maze[i][j] == 0 {
 		maze[i][j] = 2
 		if dailMaze(maze,i+1,j) {
-
 			return true
 		}else if dailMaze(maze,i,j+1) {
 			return true

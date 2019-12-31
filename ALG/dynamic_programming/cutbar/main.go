@@ -19,8 +19,8 @@ func CutSteel(value []int, length int) int {
 	bestValue := math.MinInt64
 
 	for i := 1; i <= length; i++ {
-		preValue := CutSteel(value,length-i)
-		bestValue = int(math.Max(float64(value[i-1]+preValue),float64(bestValue)))
+		preValue := value[i-1]+CutSteel(value,length-i)
+		bestValue = int(math.Max(float64(preValue),float64(bestValue)))
 	}
 	return bestValue
 }

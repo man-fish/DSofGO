@@ -18,7 +18,7 @@ func solveNQueens(n int) [][]string {
 	/**
 		ans 	*[][]string		全部题解
 		n 		int				兼容皇后数量
-		queues 	[]int			本轮皇后排列情况
+		queues 	[]int			本轮皇后排列情况,
 		row 	int				轮数
 	 */
 func calcQueues(ans *[][]string,n int,queues []int,row int) {
@@ -51,9 +51,9 @@ func printQ(res []int, n int) []string {
 		str := ""
 		for i := 0; i < n; i++ {
 			if i == v {
-				str += "Q"
+				str += "Q\t"
 			} else {
-				str += "."
+				str += ".\t"
 			}
 		}
 		s = append(s, str)
@@ -62,7 +62,7 @@ func printQ(res []int, n int) []string {
 }
 
 func main() {
-	for _,col := range solveNQueens(4) {
+	for _,col := range solveNQueens(8) {
 		for _,row := range col{
 			fmt.Println(row)
 		}
