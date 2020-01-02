@@ -1,17 +1,18 @@
-package main
+package knight
 
 import "fmt"
 
 /**
-	骑士游历问题
-	棋盘大小是8*8，骑士在棋盘任一方格开始游历。要求骑士游历棋盘的每一个方格且每个方格只游历一次。输出骑士的游历路径。
+	骑士游历问题:
+		棋盘大小是8*8，骑士在棋盘任一方格开始游历。要求骑士游历棋盘的每一个方格且每个方格只游历一次。输出骑士的游历路径。
 	解题思路：
-	定义8*8的棋盘
-	0:表示没有探索
-	1-n：表示已经走过了，并且用n记录步骤。
-	外围的墙也用1表示
- */
-func btknight() {
+		定义8*8的棋盘
+		0:表示没有探索
+		1-n：表示已经走过了，并且用n记录步骤。
+		外围的墙也用1表示
+*/
+
+func SolveKnight() {
 	checkBoard := make([][]int, 9)
 	for row := range checkBoard {
 		checkBoard[row] = make([]int, 9)
@@ -25,15 +26,17 @@ func btknight() {
 		checkBoard[j][8] = 1
 	}
 	printBoard(checkBoard)
-	solveKnight(checkBoard,1,1,1)
+	knight(checkBoard,1,1,1)
 	printBoard(checkBoard)
+	ans := recordKnight(checkBoard)
+	fmt.Println(ans)
 }
 /*构建棋盘开始游戏*/
 /**
 	checkboard	棋盘
 	i,j			马的位置
- */
-func solveKnight(checkBoard [][]int, i,j int,n int) bool {
+*/
+func knight(checkBoard [][]int, i,j int,n int) bool {
 	if n == (len(checkBoard)-2)*(len(checkBoard)-2) + 1 {
 		return true
 	}
@@ -45,21 +48,21 @@ func solveKnight(checkBoard [][]int, i,j int,n int) bool {
 	if checkBoard[i][j] == 0 {
 		checkBoard[i][j] = n
 		n = n + 1
-		if solveKnight(checkBoard,i+2,j+1,n) {
+		if knight(checkBoard,i+2,j+1,n) {
 			return true
-		}else if solveKnight(checkBoard,i+1,j+2,n) {
+		}else if knight(checkBoard,i+1,j+2,n) {
 			return true
-		}else if solveKnight(checkBoard,i-1,j+2,n) {
+		}else if knight(checkBoard,i-1,j+2,n) {
 			return true
-		}else if solveKnight(checkBoard,i-2,j+1,n) {
+		}else if knight(checkBoard,i-2,j+1,n) {
 			return true
-		}else if solveKnight(checkBoard,i-2,j-1,n) {
+		}else if knight(checkBoard,i-2,j-1,n) {
 			return true
-		}else if solveKnight(checkBoard,i-1,j-1,n) {
+		}else if knight(checkBoard,i-1,j-1,n) {
 			return true
-		}else if solveKnight(checkBoard,i+1,j-2,n) {
+		}else if knight(checkBoard,i+1,j-2,n) {
 			return true
-		}else if solveKnight(checkBoard,i+2,j-1,n) {
+		}else if knight(checkBoard,i+2,j-1,n) {
 			return true
 		}else{
 			return false
@@ -68,17 +71,6 @@ func solveKnight(checkBoard [][]int, i,j int,n int) bool {
 		return false
 	}
 }
-/*回溯法解决问题*/
-//func isOver(checkBoard [][]int) bool {
-//	for _,row := range checkBoard {
-//		for _,col := range row {
-//			if col == 0 {
-//				return false
-//			}
-//		}
-//	}
-//	return true
-//}
 /*如果全部位置都已经走过了的话游戏结束,已经进行了优化*/
 func printBoard(checkBoard [][]int) {
 	for _,line := range checkBoard {
@@ -89,7 +81,14 @@ func printBoard(checkBoard [][]int) {
 	}
 	fmt.Println()
 }
-/*打印棋盘*/
-func main () {
-	btknight()
+
+func recordKnight(checkboard [][]int) []string {
+	ans := make([]string,(len(checkboard)-2)*(len(checkboard)-2))
+	for i := 1; i < len(checkboard)-2; i++  {
+		for j := 1; j < len(checkboard)-2 ; j++  {
+			ans[checkboard[i][j]-1] = fmt.Sprintf("(%v,%v)",j,i)
+		}
+	}
+	return ans
 }
+/*打印棋盘*/
