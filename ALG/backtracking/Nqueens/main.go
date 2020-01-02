@@ -47,6 +47,7 @@ func isValid(queues []int,row int) bool {
 
 func printQ(res []int, n int) []string {
 	s := []string{}
+
 	for _, v := range res {
 		str := ""
 		for i := 0; i < n; i++ {

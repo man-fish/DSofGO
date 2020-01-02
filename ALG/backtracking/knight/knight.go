@@ -34,7 +34,7 @@ func btknight() {
 	i,j			马的位置
  */
 func solveKnight(checkBoard [][]int, i,j int,n int) bool {
-	if isOver(checkBoard) {
+	if n == (len(checkBoard)-2)*(len(checkBoard)-2) + 1 {
 		return true
 	}
 
@@ -69,17 +69,17 @@ func solveKnight(checkBoard [][]int, i,j int,n int) bool {
 	}
 }
 /*回溯法解决问题*/
-func isOver(checkBoard [][]int) bool {
-	for _,row := range checkBoard {
-		for _,col := range row {
-			if col == 0 {
-				return false
-			}
-		}
-	}
-	return true
-}
-/*如果全部位置都已经走过了的话游戏结束*/
+//func isOver(checkBoard [][]int) bool {
+//	for _,row := range checkBoard {
+//		for _,col := range row {
+//			if col == 0 {
+//				return false
+//			}
+//		}
+//	}
+//	return true
+//}
+/*如果全部位置都已经走过了的话游戏结束,已经进行了优化*/
 func printBoard(checkBoard [][]int) {
 	for _,line := range checkBoard {
 		for _,block := range line {
@@ -89,7 +89,7 @@ func printBoard(checkBoard [][]int) {
 	}
 	fmt.Println()
 }
-/*打印期盼*/
+/*打印棋盘*/
 func main () {
 	btknight()
 }
