@@ -57,8 +57,6 @@ func findContentChildren(g []int, s []int) int {
 	return res
 }
 
-
-
 func main(){
 	fmt.Println(findContentChildren([]int{1,2},[]int{3}))
 }
