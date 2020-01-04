@@ -40,7 +40,7 @@ import (
 		所以你应该输出2.
 */
 
-func findContentChildren(g []int, s []int) int {
+func feedContentChildren(g []int, s []int) int {
 	sort.BubbleSort(g)
 	sort.BubbleSort(s)
 
@@ -58,5 +58,5 @@ func findContentChildren(g []int, s []int) int {
 }
 
 func main(){
-	fmt.Println(findContentChildren([]int{1,2},[]int{3}))
+	fmt.Println(feedContentChildren([]int{1,2},[]int{3}))
 }

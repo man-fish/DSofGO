@@ -34,14 +34,16 @@ func MemorizedCutSteel(v []int,r []int,n int) int {
 	if n == 0 {
 		bestChoice = 0
 	}else{
-		for i := 1; i <= n; i++ {
+		for i := 1; i < n; i++ {
 			temp := v[i] + MemorizedCutSteel(v,r,n-i)
 			bestChoice = int(math.Max(float64(bestChoice), float64(temp)))
 		}
 	}
 	r[n] = bestChoice
+	fmt.Println(r)
 	return bestChoice
 }
+
 /*
 
 	@v []int	价值数组
@@ -65,5 +67,6 @@ func BottomUpCutSteel(v []int, n int) int {
 
 
 func main() {
+	fmt.Println(CutSteel([]int{1,5,8,9},4))
 	fmt.Println(BottomUpCutSteel([]int{1,5,8,9},4))
 }
