@@ -71,4 +71,5 @@ func coinDynamiccharge(coins []int, account int) int {
 }
 
 func main() {
+
 }
