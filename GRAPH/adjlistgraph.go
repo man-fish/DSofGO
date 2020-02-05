@@ -1,3 +1,7 @@
+/*
+数据结构-图
+	type GRAPH
+*/
 package GRAPH
 
 import (
@@ -6,12 +10,15 @@ import (
 	"go_DataStruct/MATRIX"
 )
 
+// Compile parses a regular expression and returns, if successful,
+// a Regexp that can be used to match against text.
 type AdjListGraph struct{
 	vertexs 	*LIST.SeqList
 	matrix 		*MATRIX.LinkedMatrix
 	maxlength	int
 }
 
+// 新建空的抽象图
 func NewEmptyAdjListGraph(length int) *AdjListGraph {
 	return &AdjListGraph{vertexs:LIST.NewEmptySeqList(length),matrix:MATRIX.NewEmptyLinkedMatrix(length,length),maxlength:0x0000ffff}
 }
