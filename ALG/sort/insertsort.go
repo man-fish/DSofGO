@@ -1,11 +1,12 @@
 package sort
 
+// InsertSort 插入排序
 func InsertSort(arr []int) {
-	for i := 1;i < len(arr);i++  {
+	for i := 1; i < len(arr); i++ {
 		temp := arr[i]
 		/*这里算作一次移动*/
 		var j int
-		for j = i-1; j >= 0 && temp < arr[j] ;j--  {
+		for j = i - 1; j >= 0 && temp < arr[j]; j-- {
 			arr[j+1] = arr[j]
 		}
 		arr[j+1] = temp
