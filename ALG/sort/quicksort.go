@@ -6,6 +6,9 @@ func QuickSort(arr []int) {
 }
 
 func quickSort(arr []int, left int, right int) {
+	if len(arr) == 0 {
+		return
+	}
 	iLeft := left
 	iRight := right
 	pivot := arr[(left+right)/2]
@@ -27,7 +30,7 @@ func quickSort(arr []int, left int, right int) {
 			iRight--
 		}
 	}
-	
+
 	if iLeft == iRight {
 		iLeft++
 		iRight--
