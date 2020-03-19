@@ -7,7 +7,10 @@
 	在任何情况下，若函数不能进行有效的转换时，请返回 0。
 	说明：
 	假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。
- */
+	思路：
+		int的储存上限
+		0 < '[0-9]' - '0' < 9
+*/
 package main
 
 import (
@@ -15,7 +18,7 @@ import (
 	"strings"
 )
 
-func myAtoi (str string) int {
+func myAtoi(str string) int {
 	str = strings.TrimSpace(str)
 	num := 0
 	str0 := str
@@ -32,7 +35,7 @@ func myAtoi (str string) int {
 			}
 
 			num = num*10 + int(v)
-			if num >= 2 << (31 - 1) {
+			if num >= 2<<(31-1) {
 				// 之所以把判断写在这里是因为，整数越界想加会报错。
 				num = 2 << (31 - 1)
 				num--
@@ -49,7 +52,6 @@ func myAtoi (str string) int {
 	}
 	return num
 }
-
 
 func main() {
 

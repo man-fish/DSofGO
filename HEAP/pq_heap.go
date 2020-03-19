@@ -1,6 +1,7 @@
 package heap
 
 import (
+	"fmt"
 	"go_DataStruct/util"
 )
 
@@ -18,6 +19,11 @@ func NewPqHeap(n int) PriorityQueue {
 	return &PqHeap{
 		tree: make([]interface{}, n+1),
 	}
+}
+
+// Tree set for tree
+func (pq *PqHeap) Tree() {
+	fmt.Println(pq.tree...)
 }
 
 // Insert insert a new ele and keep the queue order

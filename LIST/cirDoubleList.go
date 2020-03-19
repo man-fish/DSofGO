@@ -22,7 +22,7 @@ func NewCirDoubleList(values []interface{}) *cirDoubleList {
 	cls := NewEmptyCirDoubleList()
 	p := cls.head
 	for i := 0; i < len(values); i++ {
-		p.Next = &DoubleNode{values[i],p,nil}
+		p.Next = &DoubleNode{values[i], p, nil}
 		p = p.Next
 	}
 	p.Next = cls.head
@@ -31,13 +31,13 @@ func NewCirDoubleList(values []interface{}) *cirDoubleList {
 }
 
 func (cls *cirDoubleList) String() (str string) {
-	str = fmt.Sprintf("List (%v) :{",reflect.TypeOf(cls).Elem().Name())
+	str = fmt.Sprintf("List (%v) :{", reflect.TypeOf(cls).Elem().Name())
 	rear := cls.head
 	for rear.Next != cls.head {
 		rear = rear.Next
-		if rear.Next == cls.head  {
+		if rear.Next == cls.head {
 			str += rear.String()
-		}else{
+		} else {
 			str += rear.String()
 			str += ","
 		}
@@ -55,13 +55,13 @@ func (cls *cirDoubleList) Insert(i int, data interface{}) *DoubleNode {
 		panic("params data can not be nil")
 	}
 	p := cls.head
-	for j := 0;j <= i&&p.Next != cls.head ;j++ {
+	for j := 0; j <= i && p.Next != cls.head; j++ {
 		p = p.Next
 	}
 	ins := &DoubleNode{
-		Data:data,
-		Next:p,
-		Prev:p.Prev,
+		Data: data,
+		Next: p,
+		Prev: p.Prev,
 	}
 	p.Prev.Next = ins
 	p.Prev = ins
@@ -70,7 +70,7 @@ func (cls *cirDoubleList) Insert(i int, data interface{}) *DoubleNode {
 
 func (cls *cirDoubleList) Remove(i int) *DoubleNode {
 	p := cls.head.Next
-	for j := 0;j < i;j++ {
+	for j := 0; j < i; j++ {
 		if p == nil {
 			return nil
 		}

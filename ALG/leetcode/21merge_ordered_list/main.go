@@ -5,6 +5,8 @@
  *     Val int
  *     Next *ListNode
  * }
+ * 思路：
+ * 		递归
  */
 package main
 

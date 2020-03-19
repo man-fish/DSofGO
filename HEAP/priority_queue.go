@@ -5,6 +5,7 @@ package heap
 
 //PriorityQueue DataStruct of Logic
 type PriorityQueue interface {
+	Tree()               //调试用
 	Insert(interface{})  //插入
 	Max() interface{}    //返回最大值
 	DelMax() interface{} //删除最大元素
