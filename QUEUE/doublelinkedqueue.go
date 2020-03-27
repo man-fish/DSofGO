@@ -7,7 +7,7 @@ type DoubleLinkedQueue struct {
 }
 
 /**
-	双节点链式队列的结构可以说是非常巧妙了，DoubleNode的prev和next视作队列的出口和入口，front可以视作一个中间元素不储存值但是却尤为重要。
+双节点链式队列的结构可以说是非常巧妙了，DoubleNode的prev和next视作队列的出口和入口，front可以视作一个中间元素不储存值但是却尤为重要。
 */
 
 func NewDoubleLinkedQueue() *DoubleLinkedQueue {
@@ -22,11 +22,11 @@ func (q *DoubleLinkedQueue) Add(x interface{}) bool {
 		return false
 	}
 	if q.IsEmpty() {
-		newnode := &LIST.DoubleNode{x,q.front,q.front}
+		newnode := &LIST.DoubleNode{x, q.front, q.front}
 		q.front.Next = newnode
 		q.front.Prev = newnode
-	}else{
-		newnode := &LIST.DoubleNode{x,q.front.Prev,q.front}
+	} else {
+		newnode := &LIST.DoubleNode{x, q.front.Prev, q.front}
 		q.front.Prev.Next = newnode
 		q.front.Prev = newnode
 	}

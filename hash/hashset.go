@@ -16,8 +16,8 @@ type HashSet struct {
 func NewHashSet(dataType string) *HashSet {
 	return &HashSet{
 		data: make(map[interface{}]interface{}),
-		dataType: string,
-		size: 0
+		dataType: dataType,
+		size: 0,
 	}
 }
 
@@ -55,7 +55,7 @@ func (hs *HashSet) Add(key interface{}) error {
 	return nil
 } 
 // Remove 从散列中移除元素
-func (hs *HashSet) Remove(key interface{}) {
+func (hs *HashSet) Remove(key interface{}) error {
 	err := hs.checkData(key)
 	if err != nil {
 		return err
