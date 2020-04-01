@@ -19,7 +19,7 @@ type pq struct {
 
 func New(size int) *pq {
 	return &pq{
-		queue: make([]*ListNode, size+1),
+		queue: make([]*Node, size+1),
 	}
 }
 
