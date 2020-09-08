@@ -1,7 +1,7 @@
 package STACK
 
 import (
-	"go_DataStruct/LIST"
+	"go_dataStruct/LIST"
 )
 
 type SingleStack struct {
@@ -9,7 +9,7 @@ type SingleStack struct {
 }
 
 func NewSingleStack() *SingleStack {
-	return &SingleStack{list:LIST.NewEmptySingleList()}
+	return &SingleStack{list: LIST.NewEmptySingleList()}
 }
 
 func (sgk *SingleStack) IsEmpty() bool {
@@ -17,7 +17,7 @@ func (sgk *SingleStack) IsEmpty() bool {
 }
 
 func (sgk *SingleStack) Push(x interface{}) {
-	sgk.list.Insert(0,x)
+	sgk.list.Insert(0, x)
 }
 
 func (sgk *SingleStack) Pop() interface{} {

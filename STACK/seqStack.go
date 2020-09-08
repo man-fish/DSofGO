@@ -1,16 +1,16 @@
 package STACK
 
 type SeqStack struct {
-	element  []interface{}
-	maxSize  int
-	top		 int
+	element []interface{}
+	maxSize int
+	top     int
 }
 
 func NewSeqStack(length int) *SeqStack {
 	return &SeqStack{
 		element: make([]interface{}, length),
 		maxSize: length,
-		top: 0,
+		top:     0,
 	}
 }
 
@@ -42,5 +42,5 @@ func (stk *SeqStack) Push(x interface{}) {
 		panic("满员了，栈溢出")
 	}
 	stk.element[stk.top] = x
-	stk.top ++
+	stk.top++
 }
